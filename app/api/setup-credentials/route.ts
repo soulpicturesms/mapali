@@ -2,7 +2,15 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 
+export async function GET() {
+  return handler()
+}
+
 export async function POST() {
+  return handler()
+}
+
+async function handler() {
   const password = await bcrypt.hash('1234', 10)
 
   // Update or create admin user with username "admin"
