@@ -1,0 +1,13 @@
+Listo. Usuario creado:
+
+Campo	Valor
+Email	test@mapalibeach.com
+Contraseña	test123
+Rol	Cliente
+Ingresá en /login con esas credenciales para probar el flujo de catálogo → carrito → pre-orden.
+
+dame el acceso para admin
+Campo	Valor
+Email	admin@mapalibeach.com
+Contraseña	admin123
+Entrá en /login con esas credenciales y te redirige directo al panel de admin.

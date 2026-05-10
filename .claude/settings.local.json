@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(curl -s -X POST http://localhost:3000/api/seed)",
+      "Bash(curl -s http://localhost:3003/api/categories)",
+      "Bash(cp \"C:/Users/Marcos/Desktop/Mapalii/\"*.jpg \"C:/Users/Marcos/programar/mapali/public/uploads/\")",
+      "Bash(cp \"C:/Users/Marcos/Desktop/Mapalii/\"*.png \"C:/Users/Marcos/programar/mapali/public/uploads/\")"
+    ]
+  }
+}
