@@ -97,7 +97,7 @@ function printOrder(order: Order, unavailableIds: string[]) {
     .code { font-family: monospace; color: #14B8A6; }
     .footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid #EDE5D5; font-size: 11px; color: #7A5230; text-align: center; }
     small { font-size: 11px; color: #7A5230; font-style: italic; }
-    @media print { body { padding: 20px; } }
+    @media print { body { padding: 20px; } .no-print { display: none !important; } }
   </style>
 </head>
 <body>
@@ -155,6 +155,10 @@ function printOrder(order: Order, unavailableIds: string[]) {
   ` : ''}
 
   <div class="footer">Mapali Beach — Joyería artesanal hecha con amor 🌺 · Productos de Colombia 🇨🇴</div>
+  <div class="no-print" style="text-align:center;margin-top:24px;">
+    <button onclick="window.print()" style="background:#14B8A6;color:white;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;margin-right:12px;">🖨️ Imprimir / Guardar PDF</button>
+    <button onclick="window.close()" style="background:#7A5230;color:white;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;">✕ Cerrar</button>
+  </div>
 </body>
 </html>`
 
@@ -163,7 +167,8 @@ function printOrder(order: Order, unavailableIds: string[]) {
   win.document.write(html)
   win.document.close()
   win.focus()
-  setTimeout(() => win.print(), 400)
+  setTimeout(() => { win.print(); }, 400)
+  win.onafterprint = () => win.close()
 }
 
 export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {

@@ -127,6 +127,10 @@ function printClientOrder(order: Order) {
   </table>
   ` : ''}
   <div class="footer">Mapali Beach — Joyería artesanal hecha con amor 🌺 · Productos de Colombia 🇨🇴</div>
+  <div style="text-align:center;margin-top:24px;" class="no-print">
+    <button onclick="window.print()" style="background:#14B8A6;color:white;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;margin-right:12px;">🖨️ Imprimir / Guardar PDF</button>
+    <button onclick="window.close()" style="background:#7A5230;color:white;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;">✕ Cerrar</button>
+  </div>
 </body>
 </html>`
 
@@ -136,6 +140,7 @@ function printClientOrder(order: Order) {
   win.document.close()
   win.focus()
   setTimeout(() => win.print(), 400)
+  win.onafterprint = () => win.close()
 }
 
 export default function PedidosClient({ orders: initial }: { orders: Order[] }) {
