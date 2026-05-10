@@ -48,15 +48,28 @@ function printOrder(order: Order, unavailableIds: string[]) {
   const total = available.reduce((sum, i) => sum + (i.product.price ?? 0) * i.quantity, 0)
   const hasPrice = available.some(i => i.product.price != null)
 
-  const itemRow = (item: OrderItem, idx: number, strike = false) => `
+  const itemRow = (item: OrderItem, idx: number, strike = false) => {
+    const faltante = item.originalQuantity != null && item.originalQuantity > item.quantity
+      ? item.originalQuantity - item.quantity : 0
+    const qtyCell = strike
+      ? `<td style="color:#DC2626">${item.quantity}</td>`
+      : faltante > 0
+        ? `<td>
+            <span style="text-decoration:line-through;color:#DC2626;font-size:11px">${item.originalQuantity}</span>
+            &nbsp;${item.quantity}
+            <br><small style="color:#DC2626;font-weight:bold">−${faltante} faltante</small>
+           </td>`
+        : `<td>${item.quantity}</td>`
+    return `
     <tr style="${strike ? 'opacity:0.5;text-decoration:line-through;color:#DC2626;' : ''}">
       <td>${idx + 1}</td>
       <td><span class="code">${item.product.code}</span></td>
       <td>${item.product.name}${item.notes ? `<br><small>Nota: ${item.notes}</small>` : ''}</td>
       ${hasPrice || !strike ? `<td>${item.product.price != null ? `$${item.product.price.toFixed(2)}` : '—'}</td>` : '<td>—</td>'}
-      <td>${item.quantity}</td>
+      ${qtyCell}
       ${hasPrice || !strike ? `<td>${item.product.price != null ? `$${(item.product.price * item.quantity).toFixed(2)}` : '—'}</td>` : '<td>—</td>'}
     </tr>`
+  }
 
   const html = `<!DOCTYPE html>
 <html>
