@@ -15,6 +15,7 @@ const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }
 interface OrderItem {
   id: string
   quantity: number
+  originalQuantity: number | null
   notes: string | null
   available: boolean
   product: {
@@ -412,10 +413,18 @@ export default function PedidosClient({ orders: initial }: { orders: Order[] }) 
                               {item.notes && !notAvail && <p className="text-xs italic" style={{ color: '#7A5230' }}>Nota: {item.notes}</p>}
                             </div>
                             <div className="text-right">
-                              <span className="font-bold text-sm"
-                                style={{ color: notAvail ? '#DC2626' : '#2C1A0E', textDecoration: notAvail ? 'line-through' : 'none' }}>
-                                ×{item.quantity}
-                              </span>
+                              {item.originalQuantity != null && item.originalQuantity !== item.quantity ? (
+                                <div>
+                                  <p className="text-xs line-through" style={{ color: '#DC2626' }}>×{item.originalQuantity}</p>
+                                  <p className="text-sm font-bold" style={{ color: '#2C1A0E' }}>×{item.quantity}</p>
+                                  <p className="text-xs font-bold" style={{ color: '#DC2626' }}>−{item.originalQuantity - item.quantity} faltante</p>
+                                </div>
+                              ) : (
+                                <span className="font-bold text-sm"
+                                  style={{ color: notAvail ? '#DC2626' : '#2C1A0E', textDecoration: notAvail ? 'line-through' : 'none' }}>
+                                  ×{item.quantity}
+                                </span>
+                              )}
                               {item.product.price != null && !notAvail && (
                                 <p className="text-xs" style={{ color: '#7A5230' }}>
                                   ${(item.product.price * item.quantity).toFixed(2)}

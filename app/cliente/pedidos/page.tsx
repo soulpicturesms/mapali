@@ -20,19 +20,24 @@ export default async function PedidosPage() {
     orderBy: { createdAt: 'desc' },
   })
 
-  // Fetch unavailable item IDs (column may not exist yet — catch safely)
-  let unavailableItemIds: string[] = []
+  // Fetch availability and originalQuantity (columns may not exist yet)
+  let extraData: { id: string; available: boolean; originalQuantity: number | null }[] = []
   try {
-    const rows = await prisma.$queryRaw<{ id: string }[]>`SELECT id FROM "OrderItem" WHERE available = false`
-    unavailableItemIds = rows.map(r => r.id)
+    extraData = await prisma.$queryRaw`SELECT id, available, "originalQuantity" FROM "OrderItem"`
   } catch {}
+
+  const extraMap = new Map(extraData.map(r => [r.id, r]))
 
   const ordersWithAvailability = orders.map(order => ({
     ...order,
-    items: order.items.map(item => ({
-      ...item,
-      available: !unavailableItemIds.includes(item.id),
-    })),
+    items: order.items.map(item => {
+      const extra = extraMap.get(item.id)
+      return {
+        ...item,
+        available: extra ? Boolean(extra.available) : true,
+        originalQuantity: extra?.originalQuantity ?? null,
+      }
+    }),
   }))
 
   return <PedidosClient orders={JSON.parse(JSON.stringify(ordersWithAvailability))} />

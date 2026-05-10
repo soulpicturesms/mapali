@@ -1,0 +1,402 @@
+{
+  "categories": [
+    {
+      "id": "cmoz30k6a0001aes52ao6s4nt",
+      "name": "Bolsos",
+      "slug": "bolsos",
+      "icon": "👜",
+      "order": 1,
+      "active": 1,
+      "createdAt": 1778375767331
+    },
+    {
+      "id": "cmoz30k6j0002aes58nu2q6r8",
+      "name": "Collares",
+      "slug": "collares",
+      "icon": "📿",
+      "order": 2,
+      "active": 1,
+      "createdAt": 1778375767340
+    },
+    {
+      "id": "cmoz30k6s0003aes5ncfyvwbh",
+      "name": "Pulseras",
+      "slug": "pulseras",
+      "icon": "🌿",
+      "order": 3,
+      "active": 1,
+      "createdAt": 1778375767349
+    },
+    {
+      "id": "cmoz30k710004aes5dpd86u20",
+      "name": "Tobilleras",
+      "slug": "tobilleras",
+      "icon": "🌊",
+      "order": 4,
+      "active": 1,
+      "createdAt": 1778375767357
+    },
+    {
+      "id": "cmoz30k7a0005aes5e7ljonw7",
+      "name": "Aros",
+      "slug": "aros",
+      "icon": "✨",
+      "order": 5,
+      "active": 1,
+      "createdAt": 1778375767367
+    },
+    {
+      "id": "cmoz30k7m0006aes50qa3beiv",
+      "name": "Accesorios",
+      "slug": "accesorios",
+      "icon": "🌴",
+      "order": 6,
+      "active": 1,
+      "createdAt": 1778375767378
+    }
+  ],
+  "products": [
+    {
+      "id": "cmoz3e11r000faes5ka8tfnp0",
+      "code": "COL-001",
+      "name": "Collar Estrella Lila",
+      "description": "Collar de cristales lilas con perlas y colgante de estrella de mar morada. Perfecto para looks de playa.",
+      "price": null,
+      "stock": 8,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395727,
+      "updatedAt": 1778380360779
+    },
+    {
+      "id": "cmoz3e122000iaes5qk7envt1",
+      "code": "COL-002",
+      "name": "Collar Flor Celeste",
+      "description": "Collar lila degradé con perlas y dije floral azul artesanal. Diseño exclusivo de Colombia.",
+      "price": null,
+      "stock": 5,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395739,
+      "updatedAt": 1778380357220
+    },
+    {
+      "id": "cmoz3e12e000laes5zuw52z79",
+      "code": "COL-003",
+      "name": "Collar Pez Rosado",
+      "description": "Collar de cristales celestes con perlas y adorable pez rosado con lunares. 100% artesanal.",
+      "price": null,
+      "stock": 3,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395750,
+      "updatedAt": 1778382920807
+    },
+    {
+      "id": "cmoz3e12p000oaes5mu185bz8",
+      "code": "COL-004",
+      "name": "Collar Estrella Violeta",
+      "description": "Collar lila con cristales facetados, perlas y estrella de mar violeta punteada.",
+      "price": null,
+      "stock": 4,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395762,
+      "updatedAt": 1778380350593
+    },
+    {
+      "id": "cmoz3e132000raes5lp0yvkgy",
+      "code": "COL-005",
+      "name": "Collar Estrella Mar Blanca",
+      "description": "Collar celeste con perlas y preciosa estrella de mar blanca texturizada. Delicado y único.",
+      "price": null,
+      "stock": 4,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395774,
+      "updatedAt": 1778382920807
+    },
+    {
+      "id": "cmoz3e13e000uaes5on9tlp84",
+      "code": "COL-006",
+      "name": "Collar Pez Iridiscente",
+      "description": "Collar rosa cuarzo con perlas y dije de pez iridiscente nacarado. Elegante y bohemio.",
+      "price": null,
+      "stock": 3,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395786,
+      "updatedAt": 1778378295403
+    },
+    {
+      "id": "cmoz3e13p000xaes5ituqncj9",
+      "code": "COL-007",
+      "name": "Collar Pez Cristal",
+      "description": "Collar blanco perla con micro perlas rosas y dije de pez transparente. Minimalista y fresco.",
+      "price": null,
+      "stock": 5,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395798,
+      "updatedAt": 1778378294122
+    },
+    {
+      "id": "cmoz3e13y0010aes5eb6azb2z",
+      "code": "COL-008",
+      "name": "Collar Pez Rojo",
+      "description": "Collar blanco perla con detalle en rosa y dije de pez rojo con lunares blancos. Llamativo.",
+      "price": null,
+      "stock": 4,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395807,
+      "updatedAt": 1778378293615
+    },
+    {
+      "id": "cmoz3e14a0013aes5zadvmhmk",
+      "code": "COL-009",
+      "name": "Collar Pez Nácar",
+      "description": "Collar verde agua con perlas y pez de nácar natural. Materiales de primera calidad.",
+      "price": null,
+      "stock": 6,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395819,
+      "updatedAt": 1778378292798
+    },
+    {
+      "id": "cmoz3e14n0016aes5fjatkou0",
+      "code": "COL-010",
+      "name": "Collar Concha Verde",
+      "description": "Collar celeste con perlas y concha de mar verde menta artesanal. Inspirado en el Caribe.",
+      "price": null,
+      "stock": 2,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395832,
+      "updatedAt": 1778383862225
+    },
+    {
+      "id": "cmoz3e14z0019aes5mmp14equ",
+      "code": "COL-011",
+      "name": "Collar Concha Blanca",
+      "description": "Collar azul cielo con perlas y concha blanca porcelana. Sofisticado y natural.",
+      "price": null,
+      "stock": 4,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395844,
+      "updatedAt": 1778376395844
+    },
+    {
+      "id": "cmoz3e15c001caes5wd1uhir1",
+      "code": "COL-012",
+      "name": "Colección Completa Beach",
+      "description": "Vista completa de la colección de temporada. Disponible en múltiples colores y figuras marinas.",
+      "price": null,
+      "stock": 0,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k6j0002aes58nu2q6r8",
+      "createdAt": 1778376395856,
+      "updatedAt": 1778376395856
+    },
+    {
+      "id": "cmoz3e15l001faes5uug250ut",
+      "code": "BOL-001",
+      "name": "Mochila Tropical Flecos",
+      "description": "Mochila de tela tropical con estampado de selva y flecos de colores. Ideal para playa. Hecha en Colombia.",
+      "price": null,
+      "stock": 2,
+      "visible": 1,
+      "featured": 0,
+      "categoryId": "cmoz30k6a0001aes52ao6s4nt",
+      "createdAt": 1778376395865,
+      "updatedAt": 1778383862226
+    },
+    {
+      "id": "cmoz3e15w001iaes5w8cmhcvp",
+      "code": "BOL-002",
+      "name": "Cartera Hibiscus & Flecos",
+      "description": "Cartera de mano con estampado de hibiscus azul marino y flecos rosas. Perfecta para días de verano.",
+      "price": null,
+      "stock": 2,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k6a0001aes52ao6s4nt",
+      "createdAt": 1778376395877,
+      "updatedAt": 1778376395877
+    },
+    {
+      "id": "cmoz3e168001laes5rxxu0rsf",
+      "code": "PUL-001",
+      "name": "Set Pulseras Piedras Naturales",
+      "description": "Set de pulseras de piedras naturales en turquesa, fucsia, rojo y madera. Estilo boho chic.",
+      "price": null,
+      "stock": 9,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k6s0003aes5ncfyvwbh",
+      "createdAt": 1778376395888,
+      "updatedAt": 1778383862227
+    },
+    {
+      "id": "cmoz5ryz8002daes5bmqocuxt",
+      "code": "COL-030",
+      "name": "Tobilleras",
+      "description": "",
+      "price": 20.0,
+      "stock": 2,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k710004aes5dpd86u20",
+      "createdAt": 1778380405461,
+      "updatedAt": 1778383862224
+    },
+    {
+      "id": "cmoz5thcj002iaes55sv6cr4d",
+      "code": "COL-055",
+      "name": "Pareos de playa",
+      "description": "Pareo de playa tejido a mano artesanal importado colombia",
+      "price": 25.0,
+      "stock": -1,
+      "visible": 1,
+      "featured": 1,
+      "categoryId": "cmoz30k7m0006aes50qa3beiv",
+      "createdAt": 1778380475923,
+      "updatedAt": 1778382920807
+    }
+  ],
+  "images": [
+    {
+      "id": "cmoz3e14z001aaes5lxscq2tv",
+      "url": "/uploads/11.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e14z0019aes5mmp14equ"
+    },
+    {
+      "id": "cmoz3e15c001daes5xt62pt2r",
+      "url": "/uploads/12.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e15c001caes5wd1uhir1"
+    },
+    {
+      "id": "cmoz3e15w001jaes5hobe271i",
+      "url": "/uploads/621752952_18344595364224718_501820947408374506_n.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e15w001iaes5w8cmhcvp"
+    },
+    {
+      "id": "cmoz3e168001maes5y3nfyfpz",
+      "url": "/uploads/625973076_18409338064120281_6238602945464082546_n.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e168001laes5rxxu0rsf"
+    },
+    {
+      "id": "cmoz4iocu001xaes56zf4dngm",
+      "url": "/uploads/10.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e14n0016aes5fjatkou0"
+    },
+    {
+      "id": "cmoz4iou6001yaes59xt8sc5z",
+      "url": "/uploads/9.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e14a0013aes5zadvmhmk"
+    },
+    {
+      "id": "cmoz4ipgv001zaes5ugyub6g9",
+      "url": "/uploads/8.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e13y0010aes5eb6azb2z"
+    },
+    {
+      "id": "cmoz4ipuy0020aes51nrn39vo",
+      "url": "/uploads/7.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e13p000xaes5ituqncj9"
+    },
+    {
+      "id": "cmoz4iquj0021aes58k7okoia",
+      "url": "/uploads/6.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e13e000uaes5on9tlp84"
+    },
+    {
+      "id": "cmoz5qsn40027aes5eka9okxw",
+      "url": "/uploads/4.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e12p000oaes5mu185bz8"
+    },
+    {
+      "id": "cmoz5qvm50028aes5x84b81ie",
+      "url": "/uploads/3.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e12e000laes5zuw52z79"
+    },
+    {
+      "id": "cmoz5qxr80029aes5ys75zds8",
+      "url": "/uploads/2.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e122000iaes5qk7envt1"
+    },
+    {
+      "id": "cmoz5r0i2002aaes58ktp1iez",
+      "url": "/uploads/1.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e11r000faes5ka8tfnp0"
+    },
+    {
+      "id": "cmoz5r80w002baes5uwi5b1nq",
+      "url": "/uploads/5.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e132000raes5lp0yvkgy"
+    },
+    {
+      "id": "cmoz5s98q002faes5dhasn69l",
+      "url": "/uploads/1778380404039-qka60o6ktnc.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz5ryz8002daes5bmqocuxt"
+    },
+    {
+      "id": "cmoz5sinu002gaes50tqomemd",
+      "url": "/uploads/621601327_18347823259228164_2692812966605630185_n.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz3e15l001faes5uug250ut"
+    },
+    {
+      "id": "cmoz5thcj002jaes5pjiai1kg",
+      "url": "/uploads/1778380441181-pyn4yy0zdd.jpg",
+      "alt": null,
+      "order": 0,
+      "productId": "cmoz5thcj002iaes55sv6cr4d"
+    }
+  ]
+}

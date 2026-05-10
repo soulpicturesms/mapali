@@ -13,6 +13,7 @@ const STATUS_OPTIONS = [
 interface OrderItem {
   id: string
   quantity: number
+  originalQuantity: number | null
   notes: string | null
   available: boolean
   product: {
@@ -168,7 +169,44 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
     }
     return map
   })
+  // quantityMap: orderId -> itemId -> adjusted quantity
+  const [quantityMap, setQuantityMap] = useState<Map<string, Map<string, number>>>(() => {
+    const map = new Map<string, Map<string, number>>()
+    for (const order of initial) {
+      const itemMap = new Map<string, number>()
+      for (const item of order.items) {
+        itemMap.set(item.id, item.quantity)
+      }
+      map.set(order.id, itemMap)
+    }
+    return map
+  })
   const [lightbox, setLightbox] = useState<Lightbox | null>(null)
+
+  const getQty = (orderId: string, itemId: string, fallback: number) =>
+    quantityMap.get(orderId)?.get(itemId) ?? fallback
+
+  const adjustQty = (orderId: string, itemId: string, delta: number, max: number) => {
+    setQuantityMap(prev => {
+      const next = new Map(prev)
+      const itemMap = new Map(next.get(orderId) ?? [])
+      const cur = itemMap.get(itemId) ?? max
+      itemMap.set(itemId, Math.max(1, Math.min(max, cur + delta)))
+      next.set(orderId, itemMap)
+      return next
+    })
+  }
+
+  const getAdjustedQuantities = (orderId: string) => {
+    const order = orders.find(o => o.id === orderId)
+    if (!order) return {}
+    const result: Record<string, number> = {}
+    for (const item of order.items) {
+      const adj = getQty(orderId, item.id, item.quantity)
+      result[item.id] = adj
+    }
+    return result
+  }
 
   const modalOrder = confirmModalId ? orders.find(o => o.id === confirmModalId) ?? null : null
 
@@ -220,7 +258,7 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
     const res = await fetch(`/api/orders/${confirmModalId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: 'confirmado', unavailableItemIds }),
+      body: JSON.stringify({ status: 'confirmado', unavailableItemIds, adjustedQuantities: getAdjustedQuantities(confirmModalId) }),
     })
     setLoadingId(null)
     if (res.ok) {
@@ -414,19 +452,46 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
                           </div>
 
                           <div className="flex items-center gap-3">
-                            {item.product.price != null && !notAvail && (
-                              <div className="text-right">
-                                <p className="text-xs" style={{ color: '#7A5230' }}>×{item.quantity}</p>
-                                <p className="text-sm font-bold" style={{ color: '#2C1A0E' }}>
-                                  ${(item.product.price * item.quantity).toFixed(2)}
-                                </p>
+                            {!notAvail && order.status !== 'confirmado' && order.status !== 'cancelado' ? (
+                              <div className="flex items-center gap-1">
+                                <button
+                                  onClick={() => adjustQty(order.id, item.id, -1, item.quantity)}
+                                  className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm"
+                                  style={{ backgroundColor: '#EDE5D5', color: '#2C1A0E' }}
+                                >−</button>
+                                <div className="text-center min-w-[28px]">
+                                  <span className="font-bold text-sm" style={{ color: '#2C1A0E' }}>
+                                    {getQty(order.id, item.id, item.quantity)}
+                                  </span>
+                                  {getQty(order.id, item.id, item.quantity) !== item.quantity && (
+                                    <p className="text-xs line-through" style={{ color: '#DC2626' }}>{item.quantity}</p>
+                                  )}
+                                </div>
+                                <button
+                                  onClick={() => adjustQty(order.id, item.id, +1, item.quantity)}
+                                  className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm"
+                                  style={{ backgroundColor: '#EDE5D5', color: '#2C1A0E' }}
+                                >+</button>
                               </div>
-                            )}
-                            {(item.product.price == null || notAvail) && (
-                              <span className="font-bold text-sm"
-                                style={{ color: notAvail ? '#DC2626' : '#2C1A0E', textDecoration: notAvail ? 'line-through' : 'none' }}>
-                                ×{item.quantity}
-                              </span>
+                            ) : (
+                              <div className="text-right">
+                                {item.originalQuantity != null && item.originalQuantity !== item.quantity ? (
+                                  <div>
+                                    <p className="text-xs line-through" style={{ color: '#DC2626' }}>×{item.originalQuantity}</p>
+                                    <p className="text-sm font-bold" style={{ color: notAvail ? '#DC2626' : '#2C1A0E', textDecoration: notAvail ? 'line-through' : 'none' }}>×{item.quantity}</p>
+                                  </div>
+                                ) : (
+                                  <span className="font-bold text-sm"
+                                    style={{ color: notAvail ? '#DC2626' : '#2C1A0E', textDecoration: notAvail ? 'line-through' : 'none' }}>
+                                    ×{item.quantity}
+                                  </span>
+                                )}
+                                {item.product.price != null && !notAvail && (
+                                  <p className="text-xs" style={{ color: '#7A5230' }}>
+                                    ${(item.product.price * item.quantity).toFixed(2)}
+                                  </p>
+                                )}
+                              </div>
                             )}
 
                             {/* Toggle unavailable button */}
@@ -556,12 +621,23 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
                       <p className="text-sm font-semibold truncate" style={{ color: '#2C1A0E' }}>{item.product.name}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <p className="text-xs" style={{ color: '#7A5230' }}>×{item.quantity}</p>
-                      {item.product.price != null && (
-                        <p className="text-sm font-bold" style={{ color: '#2C1A0E' }}>
-                          ${(item.product.price * item.quantity).toFixed(2)}
-                        </p>
-                      )}
+                      {(() => {
+                        const adj = getQty(modalOrder.id, item.id, item.quantity)
+                        const faltante = item.quantity - adj
+                        return (
+                          <>
+                            <p className="text-sm font-bold" style={{ color: '#2C1A0E' }}>×{adj}</p>
+                            {faltante > 0 && (
+                              <p className="text-xs font-bold" style={{ color: '#DC2626' }}>−{faltante} faltante</p>
+                            )}
+                            {item.product.price != null && (
+                              <p className="text-xs" style={{ color: '#7A5230' }}>
+                                ${(item.product.price * adj).toFixed(2)}
+                              </p>
+                            )}
+                          </>
+                        )
+                      })()}
                     </div>
                   </div>
                 ))}
