@@ -433,7 +433,7 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
                             {order.status !== 'confirmado' && order.status !== 'cancelado' && (
                               <button
                                 onClick={() => toggleUnavailable(order.id, item.id)}
-                                className="w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity flex-shrink-0"
+                                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
                                 style={{ backgroundColor: notAvail ? '#14B8A6' : '#E8603C' }}
                                 title={notAvail ? 'Restaurar artículo' : 'Marcar como no disponible'}
                               >
