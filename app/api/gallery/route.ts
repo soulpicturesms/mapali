@@ -5,8 +5,8 @@ import { authOptions } from '@/lib/auth'
 import { randomUUID } from 'crypto'
 
 export async function GET() {
-  const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "GalleryPhoto" WHERE active = 1 ORDER BY "order" ASC`
-  return NextResponse.json(raw.map(p => ({ ...p, active: Boolean(Number(p.active)) })))
+  const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "GalleryPhoto" WHERE active = true ORDER BY "order" ASC`
+  return NextResponse.json(raw.map(p => ({ ...p, active: Boolean(p.active) })))
 }
 
 export async function POST(req: NextRequest) {
@@ -20,6 +20,6 @@ export async function POST(req: NextRequest) {
   const countRows = await prisma.$queryRaw<any[]>`SELECT COUNT(*) as c FROM "GalleryPhoto"`
   const count = Number(countRows[0]?.c ?? 0)
   const id = randomUUID()
-  await prisma.$executeRaw`INSERT INTO "GalleryPhoto" (id, url, label, "order", active, createdAt) VALUES (${id}, ${url}, ${label}, ${count}, 1, datetime('now'))`
+  await prisma.$executeRaw`INSERT INTO "GalleryPhoto" (id, url, label, "order", active, "createdAt") VALUES (${id}, ${url}, ${label}, ${count}, true, NOW())`
   return NextResponse.json({ id, url, label, order: count, active: true })
 }

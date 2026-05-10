@@ -14,14 +14,14 @@ async function getFeaturedProducts() {
 
 async function getSectionItems() {
   try {
-    const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE active = 1 ORDER BY "order" ASC`
+    const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE active = true ORDER BY "order" ASC`
     return raw as { id: string; section: string; url: string; label?: string | null; subtitle?: string | null }[]
   } catch { return [] }
 }
 
 async function getGalleryPhotos() {
   try {
-    const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "GalleryPhoto" WHERE active = 1 ORDER BY "order" ASC`
+    const raw = await prisma.$queryRaw<any[]>`SELECT * FROM "GalleryPhoto" WHERE active = true ORDER BY "order" ASC`
     return raw as { id: string; url: string; label: string }[]
   } catch { return [] }
 }

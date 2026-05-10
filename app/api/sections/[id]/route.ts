@@ -10,7 +10,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   const data = await req.json()
 
   if (data.active !== undefined) {
-    const active = data.active ? 1 : 0
+    const active = Boolean(data.active)
     await prisma.$executeRaw`UPDATE "SectionItem" SET active = ${active} WHERE id = ${id}`
   }
   if (data.label !== undefined) {

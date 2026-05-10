@@ -1,11 +1,11 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -90,7 +90,7 @@ model GalleryPhoto {
 
 model SectionItem {
   id        String   @id @default(cuid())
-  section   String   // "hero_0" | "hero_1" | "hero_2" | "hero_3" | "bolsos"
+  section   String
   url       String
   label     String?
   subtitle  String?

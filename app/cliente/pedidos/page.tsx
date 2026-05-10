@@ -22,7 +22,7 @@ export default async function PedidosPage() {
   // Fetch unavailable item IDs (column may not exist yet — catch safely)
   let unavailableItemIds: string[] = []
   try {
-    const rows = await prisma.$queryRaw<{ id: string }[]>`SELECT id FROM "OrderItem" WHERE available = 0`
+    const rows = await prisma.$queryRaw<{ id: string }[]>`SELECT id FROM "OrderItem" WHERE available = false`
     unavailableItemIds = rows.map(r => r.id)
   } catch {}
 

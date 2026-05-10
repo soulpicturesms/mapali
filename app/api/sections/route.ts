@@ -7,9 +7,9 @@ import { randomUUID } from 'crypto'
 export async function GET(req: NextRequest) {
   const section = req.nextUrl.searchParams.get('section')
   const raw = section
-    ? await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE section = ${section} AND active = 1 ORDER BY "order" ASC`
-    : await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE active = 1 ORDER BY "order" ASC`
-  return NextResponse.json(raw.map(i => ({ ...i, active: Boolean(Number(i.active)) })))
+    ? await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE section = ${section} AND active = true ORDER BY "order" ASC`
+    : await prisma.$queryRaw<any[]>`SELECT * FROM "SectionItem" WHERE active = true ORDER BY "order" ASC`
+  return NextResponse.json(raw.map(i => ({ ...i, active: Boolean(i.active) })))
 }
 
 export async function POST(req: NextRequest) {
@@ -25,6 +25,6 @@ export async function POST(req: NextRequest) {
   const id = randomUUID()
   const lbl = label || null
   const sub = subtitle || null
-  await prisma.$executeRaw`INSERT INTO "SectionItem" (id, section, url, label, subtitle, "order", active, createdAt) VALUES (${id}, ${section}, ${url}, ${lbl}, ${sub}, ${count}, 1, datetime('now'))`
+  await prisma.$executeRaw`INSERT INTO "SectionItem" (id, section, url, label, subtitle, "order", active, "createdAt") VALUES (${id}, ${section}, ${url}, ${lbl}, ${sub}, ${count}, true, NOW())`
   return NextResponse.json({ id, section, url, label: lbl, subtitle: sub, order: count, active: true })
 }

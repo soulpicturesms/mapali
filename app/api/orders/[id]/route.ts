@@ -6,7 +6,7 @@ import { authOptions } from '@/lib/auth'
 // Ensure the 'available' column exists on OrderItem (runs once, safe to retry)
 async function ensureAvailableColumn() {
   try {
-    await prisma.$executeRaw`ALTER TABLE "OrderItem" ADD COLUMN "available" INTEGER NOT NULL DEFAULT 1`
+    await prisma.$executeRaw`ALTER TABLE "OrderItem" ADD COLUMN "available" BOOLEAN NOT NULL DEFAULT true`
   } catch {}
 }
 
@@ -30,7 +30,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
     // Mark unavailable items in DB so clients can see them
     for (const itemId of unavailableItemIds as string[]) {
-      await prisma.$executeRaw`UPDATE "OrderItem" SET available = 0 WHERE id = ${itemId}`
+      await prisma.$executeRaw`UPDATE "OrderItem" SET available = false WHERE id = ${itemId}`
     }
 
     // Deduct stock only for available items
