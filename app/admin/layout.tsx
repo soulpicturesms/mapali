@@ -10,7 +10,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: '#FFFBF4' }}>
       <AdminNav userName={session.user.name || 'Admin'} />
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto pt-14 md:pt-0">
         {children}
       </main>
     </div>
