@@ -275,7 +275,21 @@ export default function PedidosAdmin({ orders: initial }: { orders: Order[] }) {
     })
     setLoadingId(null)
     if (res.ok) {
-      setOrders(prev => prev.map(o => o.id === confirmModalId ? { ...o, status: 'confirmado' } : o))
+      const adjustedQtys = getAdjustedQuantities(confirmModalId)
+      setOrders(prev => prev.map(o => {
+        if (o.id !== confirmModalId) return o
+        return {
+          ...o,
+          status: 'confirmado',
+          items: o.items.map(item => {
+            const adj = adjustedQtys[item.id]
+            if (adj !== undefined && adj !== item.quantity) {
+              return { ...item, originalQuantity: item.quantity, quantity: adj }
+            }
+            return item
+          }),
+        }
+      }))
       toast.success('Pedido confirmado ✅ — Stock actualizado')
       setConfirmModalId(null)
     } else {
