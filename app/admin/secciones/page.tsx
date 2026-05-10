@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import SeccionesAdmin from './SeccionesAdmin'
 import { prisma } from '@/lib/prisma'
 
